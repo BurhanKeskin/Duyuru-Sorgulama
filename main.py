@@ -10,15 +10,36 @@ locale.setlocale(locale.LC_TIME, "tr_TR")
 
 # Bugünün tarihini değişkene atadım.
 # I've assigned the today's date into the variable 
-currentDate = date.today().strftime("%d %B %Y")
+currentDate = date.today().strftime("%d.%B.%Y")
 # ayrıca bugünü kelime olarakta değişkene atadım.
 # also I've assigned the today into the variable as string
 currentDay = date.today().strftime("%A")
 
+Date = currentDate + " " + currentDay
+
+Date1 = "12.05.2023 Cuma"
 
 AnnouncementLinks = []
 AnnouncementTitles = []
 
+TargerURL = "https://www.bilecik.edu.tr/main/arama/4"
+request = requests.get(TargerURL)
+Soup = BeautifulSoup(request.text, "html.parser")
+AnnouncementCards = Soup.find_all('div', attrs={"class":"card-body p-2"})
 
+for link in AnnouncementCards:
+
+    announcementLink = "https://www.bilecik.edu.tr" + link.find('h6', {"class":"card-title"}).a['href']
+    announcementTitle = link.find('h6', {"class":"card-title"}).a.text 
+    announcementDate = link.find('small', {"class":"text-muted"}).text
+
+    
+    if(announcementDate.strip() == Date1):
+        AnnouncementTitles.append(announcementTitle)
+        AnnouncementLinks.append(announcementLink)
+
+for title,link in zip(AnnouncementTitles,AnnouncementLinks):
+    print(title + "\n" + link + "\n")
+    
 
 
