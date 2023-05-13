@@ -34,9 +34,12 @@ for link in AnnouncementCards:
     announcementDate = link.find('small', {"class":"text-muted"}).text
 
     
-    if(announcementDate.strip() == Date1):
+    if(announcementDate.strip() == Date):
         AnnouncementTitles.append(announcementTitle)
         AnnouncementLinks.append(announcementLink)
+    else:
+        print("Bugün yayınlanan bir duyuru bulunamadı.")
+        break    
 
 for title,link in zip(AnnouncementTitles,AnnouncementLinks):
     print(title + "\n" + link + "\n")
