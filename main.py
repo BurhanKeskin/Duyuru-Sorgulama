@@ -18,8 +18,6 @@ currentDay = date.today().strftime("%A")
 
 
 
-print(f"{currentDate} {currentDay}")
-
 AnnouncementLinks = []
 AnnouncementTitles = []
 
