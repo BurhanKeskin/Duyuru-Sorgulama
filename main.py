@@ -16,9 +16,9 @@ currentDate = date.today().strftime("%d %B %Y")
 currentDay = date.today().strftime("%A")
 
 
-
-
 AnnouncementLinks = []
 AnnouncementTitles = []
+
+
 
 
