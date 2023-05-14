@@ -27,11 +27,11 @@ request = requests.get(TargerURL)
 Soup = BeautifulSoup(request.text, "html.parser")
 AnnouncementCards = Soup.find_all('div', attrs={"class":"card-body p-2"})
 
-for link in AnnouncementCards:
+for announcement in AnnouncementCards:
 
-    announcementLink = "https://www.bilecik.edu.tr" + link.find('h6', {"class":"card-title"}).a['href']
-    announcementTitle = link.find('h6', {"class":"card-title"}).a.text 
-    announcementDate = link.find('small', {"class":"text-muted"}).text
+    announcementLink = "https://www.bilecik.edu.tr" + announcement.find('h6', {"class":"card-title"}).a['href']
+    announcementTitle = announcement.find('h6', {"class":"card-title"}).a.text 
+    announcementDate = announcement.find('small', {"class":"text-muted"}).text
 
     
     if(announcementDate.strip() == Date):
